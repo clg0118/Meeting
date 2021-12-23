@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         x5WebView.addHandlerLocal("turnToGreen", new BridgeHandler() {
             @Override
             public void handler(Context context, String data, CallBackFunction function) {
-                adbcommand("echo w 0x06 > ./sys/devices/platform/led_con_h/zigbee_reset");
+                adbcommand("echo w 06 > ./sys/devices/platform/led_con_h/zigbee_reset");
             }
         });
         x5WebView.addHandlerLocal("turnToBlue", new BridgeHandler() {
@@ -65,11 +65,14 @@ public class MainActivity extends AppCompatActivity {
         x5WebView.addHandlerLocal("turnToColor", new BridgeHandler() {
             @Override
             public void handler(Context context, String data, CallBackFunction function) {
-                adbcommand("echo w " + data + "> ./sys/devices/platform/led_con_h/zigbee_reset");
+                adbcommand("echo w " + data.replaceAll("\"","") + "> ./sys/devices/platform/led_con_h/zigbee_reset");
             }
         });
 
     }
+
+    
+
     public String adbcommand(String command) {
         Process process = null;
         DataOutputStream os = null;

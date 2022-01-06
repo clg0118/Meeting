@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         x5WebView.addHandlerLocal("setUrl", new BridgeHandler() {
             @Override
             public void handler(Context context, String data, CallBackFunction function) {
-
+                showDialog();
             }
         });
     }
